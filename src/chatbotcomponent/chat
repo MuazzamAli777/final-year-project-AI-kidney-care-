@@ -1,0 +1,343 @@
+import { useState, useRef, useEffect } from "react";
+import conf from "../conf/conf.js";
+import Header from "../homepagecomponets/header";
+export default function Chatbot() {
+  const [messages, setMessages] = useState([
+    {
+      id: "1",
+      text: "Assalam o Alaikum! Main aapki kaise madad kar sakta hoon?",
+      sender: "bot",
+      timestamp: new Date(),
+    },
+  ]);
+
+  const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const messagesEndRef = useRef(null);
+
+  const API_KEY = conf.apikey;
+
+const keywords = [
+  // Basic
+  "kidney", "kidneys", "renal", "nephro", "nephrology", "nephrologist",
+  "urinary", "urine", "ureter", "bladder", "urethra",
+
+  // Common misspellings (VERY IMPORTANT)
+  "kideny", "kidny", "kidne", "kidnei", "kidneey", "kidni",
+  "kidey", "kidnye", "kidneye", "kidnei", "kideneys",
+
+  // Disease / Conditions
+  "kidney disease", "kidney failure", "renal failure", "chronic kidney disease",
+  "acute kidney injury", "ckd", "esrd", "end stage renal disease",
+  "kidney infection", "pyelonephritis", "glomerulonephritis",
+  "nephritis", "polycystic kidney disease", "pkd",
+
+  // Stones
+  "kidney stone", "kidney stones", "renal stone", "renal stones",
+  "stone", "stones", "kidney calculi", "calculus", "urolithiasis",
+  "gurdah pathri", "gurda pathri", "pathri", "patheri",
+
+  // Symptoms
+  "back pain", "flank pain", "side pain",
+  "blood in urine", "hematuria",
+  "foamy urine", "dark urine",
+  "burning urination", "painful urination",
+  "frequent urination", "low urine",
+  "swelling", "swollen feet", "swollen ankles",
+  "fatigue", "weakness", "loss of appetite",
+  "nausea", "vomiting",
+
+  // Tests
+  "creatinine", "urea", "bun", "gfr", "egfr",
+  "kidney function test", "kft", "urinalysis",
+  "urine test", "blood test", "ultrasound kidney",
+  "ct scan kidney", "biopsy",
+
+  // Treatment
+  "dialysis", "hemodialysis", "peritoneal dialysis",
+  "kidney transplant", "transplant", "nephrectomy",
+
+  // Risk factors
+  "diabetes kidney", "high blood pressure kidney",
+  "hypertension kidney", "smoking kidney",
+  "dehydration kidney", "obesity kidney","cyst","tumor","tumors",
+
+  // Roman Urdu / Hindi
+  "gurda", "gurday", "gurde", "gurde ki bimari",
+  "gurde ka dard", "gurde ki pathri", "pathri",
+  "peshab", "peshab mein khoon", "peshab jalna",
+  "peshab ka masla", "gurda fail", "gurda kharab",
+
+  // Extra variations
+  "kidney pain", "kidney infection symptoms",
+  "kidney problem", "kidney issues",
+  "renal problem", "renal pain",
+  "urine infection", "uti", "urinary infection"
+  ,"cyst", "cysts", "kidney cyst", "renal cyst",
+
+  // Medical terms
+  "simple cyst", "complex cyst", "polycystic kidney disease",
+  "pkd", "renal cystic disease", "cystic lesion",
+
+  // Related conditions
+  "fluid filled sac", "fluid sac kidney",
+
+  // Symptoms context
+  "cyst pain", "kidney cyst pain", "side pain cyst",
+
+  // Roman Urdu / Hindi
+  "cyst", "sist", "syst",
+  "gurde ki cyst", "kidney ki cyst",
+  "pani ki thaili", "pani ki gath",
+
+  // Misspellings
+  "cist", "cyct", "cyts", "csy t", "cys", "cystt",
+  "kyst", "cystes", "cysts kidney", "cyst in kidney",
+
+  // Search phrases
+  "what is cyst", "cyst in kidney", "kidney cyst symptoms",
+  "cyst treatment", "cyst ka ilaj",
+   "tumor", "tumors", "kidney tumor", "renal tumor",
+
+  // UK spelling
+  "tumour", "tumours", "renal tumour",
+
+  // Medical terms
+  "mass", "renal mass", "growth in kidney",
+  "neoplasm", "renal neoplasm",
+  "benign tumor", "malignant tumor",
+  "cancer", "kidney cancer", "renal cancer",
+  "carcinoma", "renal cell carcinoma", "rcc",
+
+  // Related
+  "lump in kidney", "kidney growth",
+
+  // Symptoms
+  "tumor pain", "kidney tumor symptoms",
+  "blood in urine tumor",
+
+  // Roman Urdu / Hindi
+  "tumor", "tumour",
+  "gurde ka tumor", "kidney ka tumor",
+  "gath", "gand", "rasoli",
+  "gath ban jana", "andar gath",
+
+  // Misspellings
+  "tumer", "tumar", "tumr", "tumorh", "tummor",
+  "tumourr", "tmor", "tomer", "tumorx",
+
+  // Search phrases
+  "what is tumor", "tumor in kidney",
+  "kidney tumor treatment", "tumor ka ilaj",
+  "kidney cancer symptoms"
+];
+
+  const isKidneyRelated = (msg) => {
+    return keywords.some(k => msg.toLowerCase().includes(k));
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSend = async () => {
+    if (!inputValue.trim()) return;
+
+    const userText = inputValue;
+
+    const userMessage = {
+      id: Date.now().toString(),
+      text: userText,
+      sender: "user",
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInputValue("");
+
+    if (!isKidneyRelated(userText)) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          text: "❌ Main sirf kidney related sawalat ka jawab deta hoon.",
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ]);
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `You are a professional medical AI assistant.
+
+STRICT OUTPUT FORMAT RULES:
+- Use clear section headings ONLY
+- Each section must start on a new line
+- Add one blank line between sections
+- No markdown (** ### --- are NOT allowed)
+- Keep text simple and structured
+- Do NOT write long paragraphs
+- Maximum 8–12 lines total
+-only kidneyprompt
+
+LANGUAGE RULE:
+- Respond ONLY in the same language as the user's question
+- If user writes in Roman english → reply in Roman english only
+- If user writes in English → reply in English only
+- Do NOT mix languages
+
+OUTPUT FORMAT MUST BE EXACTLY LIKE THIS:
+
+Overview:
+Kidney is a vital organ...
+
+Key Points:
+• Point 1
+• Point 2
+• Point 3
+
+Summary:
+Short final explanation...
+ ${userText}`,
+                  },
+                ],
+              },
+            ],
+          }),
+        }
+      );
+
+      const data = await res.json();
+console.log(data)
+      const reply =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Koi response nahi mila";
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          text: reply,
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          text: "⚠️ Server error, dobara try karein.",
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ]);
+    }
+
+    setLoading(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") handleSend();
+  };
+
+  return (
+
+
+   <div className="h-screen flex flex-col bg-gray-100">
+        <Header />
+        <div className="max-w-4xl mx-auto px-4"></div>
+      {/* HEADER */}
+      
+      
+     <div className="bg-white shadow px-20 py-2 flex items-center gap-3 z-10  ">
+        <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-blue-500 text-white">
+          💬
+        </div>
+        <div>
+          <h2 className="font-semibold text-lg">AI Chatbot</h2>
+          <p className="text-sm text-gray-500">
+            Har waqt aapki khidmat mein
+          </p>
+        </div>
+      </div>
+
+      {/* CHAT AREA */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-24 no-scrollbar">
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={`flex ${
+              msg.sender === "user" ? "justify-end" : ""
+            }`}
+          >
+            <div
+              className={`max-w-[70%] px-4 py-3 rounded-2xl shadow ${
+                msg.sender === "user"
+                  ? "bg-green-500 text-white"
+                  : "bg-white"
+              }`}
+            >
+              <p>{msg.text}</p>
+              <span className="text-xs opacity-60">
+                {msg.timestamp.toLocaleTimeString()}
+              </span>
+            </div>
+          </div>
+        ))}
+
+        {loading && (
+          <p className="text-sm text-gray-500 animate-pulse">
+            Typing...
+          </p>
+        )}
+
+        <div ref={messagesEndRef} />
+        
+      </div>
+
+      {/* INPUT */}
+     <div className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t p-4">
+  <div className="max-w-4xl mx-auto flex items-center gap-3 bg-white border rounded-2xl shadow-lg px-4 py-3">
+
+    <input
+      type="text"
+      placeholder="Apna sawal likhein..."
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+      onKeyDown={(e) => e.key === "Enter" && handleSend()}
+      disabled={loading}
+      className="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-400"
+    />
+
+    <button
+      onClick={handleSend}
+      disabled={loading}
+      className="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 text-white hover:scale-105 active:scale-95 transition disabled:opacity-50"
+    >
+      ➤
+    </button>
+
+  </div>
+</div>
+    </div>
+  );
+}
