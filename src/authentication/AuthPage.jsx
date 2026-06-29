@@ -121,14 +121,14 @@ function AuthPage() {
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400/20 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
 
                     <div className="relative z-10  p-10 flex flex-col justify-between w-full">
-                        <div class="inline-block px-4 py-2 max-w-48 bg-blue-100 text-blue-700 rounded-full text-sm font-medium  mt-10">
+                        <div className="inline-block px-4 py-2 max-w-48 bg-blue-100 text-blue-700 rounded-full text-sm font-medium  mt-10">
                             Advanced AI Technology
                         </div>
 
                         <div className="mb-28 -translate-y-8">
 
 
-                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">Your Trusted Partner in <span class="text-blue-600">Kidney Healthcare</span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">Your Trusted Partner in <span className="text-blue-600">Kidney Healthcare</span>
                             </h1>
 
                             <p className="text-black text-base mb-8 max-w-lg leading-relaxed text-justify">

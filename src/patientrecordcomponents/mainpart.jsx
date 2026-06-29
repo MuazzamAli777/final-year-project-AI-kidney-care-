@@ -21,7 +21,6 @@ const [totalPages, setTotalPages] = useState(1);
       setLoading(true);
 
       const response = await services.getPatients(filter, page, 10);
-      console.log(response)
       if (response) {
         setPatients(response.rows);
 
@@ -33,8 +32,6 @@ const [totalPages, setTotalPages] = useState(1);
     fetchPatients();
 
   }, [filter, page]);
-
-  console.log(patients)
 
   const filteredPatients = patients.filter((patient) => {
     // Name starts with searchTerm (case-insensitive)
@@ -97,7 +94,6 @@ const [totalPages, setTotalPages] = useState(1);
   };
 
   const openReport = (patientid_li) => {
-    console.log(patientid_li)
     navigate(`/report/${patientid_li}`); // $id is Appwrite document ID
   };
 
@@ -112,22 +108,22 @@ const [totalPages, setTotalPages] = useState(1);
   return (
     <>
       <section className='flex-1'>
-        <div class="min-h-screen bg-gray-50 py-8">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
 
               <div>
-                <h1 class="text-3xl font-bold text-gray-900">Patient Records</h1>
-                <p class="text-gray-600 mt-1">Manage and view all patient analyses</p>
+                <h1 className="text-3xl font-bold text-gray-900">Patient Records</h1>
+                <p className="text-gray-600 mt-1">Manage and view all patient analyses</p>
               </div>
 
-              <div class="flex gap-3">
+              <div className="flex gap-3">
 
-                <button class="flex items-center gap-2 border px-4 py-2 rounded-md text-sm hover:bg-gray-100"
+                <button className="flex items-center gap-2 border px-4 py-2 rounded-md text-sm hover:bg-gray-100"
                   onClick={exportCSV}>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -152,14 +148,14 @@ const [totalPages, setTotalPages] = useState(1);
 
             </div>
 
-            <div class="bg-white border rounded-xl p-6">
+            <div className="bg-white border rounded-xl p-6">
 
 
-              <div class="flex flex-col sm:flex-row gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
 
-                <div class="flex-1 relative">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div className="flex-1 relative">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="11" cy="11" r="8" />
                     <path d="m21 21-4.3-4.3" />
                   </svg>
@@ -173,9 +169,9 @@ const [totalPages, setTotalPages] = useState(1);
                   />
                 </div>
 
-                <div class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-400"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z" />
                   </svg>
 
@@ -206,23 +202,23 @@ const [totalPages, setTotalPages] = useState(1);
 
                 (
 
-                  <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
 
-                      <thead class="border-b  bg-gray-50">
+                      <thead className="border-b  bg-gray-50">
                         <tr>
-                          <th class="text-center px-2 py-3">Patient ID</th>
-                          <th class="text-center px-2 py-3">Name</th>
-                          <th class="text-center px-2 py-3">Age</th>
-                          <th class="text-center px-2 py-3">Gender</th>
-                          <th class="text-center px-2 py-3">Date</th>
-                          <th class="text-center px-2 py-3">Diagnosis</th>
-                          <th class="text-center px-2 py-3">Confidence</th>
-                          <th class="text-center px-2 py-3">Actions</th>
-                          <th class="text-right px-2 py-3">
+                          <th className="text-center px-2 py-3">Patient ID</th>
+                          <th className="text-center px-2 py-3">Name</th>
+                          <th className="text-center px-2 py-3">Age</th>
+                          <th className="text-center px-2 py-3">Gender</th>
+                          <th className="text-center px-2 py-3">Date</th>
+                          <th className="text-center px-2 py-3">Diagnosis</th>
+                          <th className="text-center px-2 py-3">Confidence</th>
+                          <th className="text-center px-2 py-3">Actions</th>
+                          <th className="text-right px-2 py-3">
                             image
                           </th>
-                          <th class="text-right px-2 py-3">Delete</th>
+                          <th className="text-right px-2 py-3">Delete</th>
                         </tr>
                       </thead>
 
@@ -277,7 +273,7 @@ const [totalPages, setTotalPages] = useState(1);
                   </div>
                 )}
 
-              <div class="mt-4 text-sm text-gray-500 text-center">
+              <div className="mt-4 text-sm text-gray-500 text-center">
                 Showing {filteredPatients.length} of  {filteredPatients.length} records
               </div>
               <div className="flex justify-center gap-2 mt-6">

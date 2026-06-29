@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import services from "../appwrite/Database";
 import { useDispatch } from "react-redux";
 import { login } from "../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function AuthCard({ onClose }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,7 +12,8 @@ function AuthCard({ onClose }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -21,17 +23,28 @@ const dispatch = useDispatch();
       let user;
 
       if (isLogin) {
-        user = await services.login({email, password});
+        const session = await services.login({email, password});
+        if (session) {
+          user = await services.getCurrentUser();
+        }
       } else {
-        user = await services.signup({name, email, password});
+        user = await services.createAccount({ email, password, name });
       }
 
-     if (user) {
-  dispatch(login(user)); // 🔥 Redux update
-  onClose();
-}
+      if (user) {
+        const formattedUser = {
+          id: user.$id,
+          name: user.name,
+          email: user.email,
+        };
+        dispatch(login(formattedUser)); // 🔥 Redux update
+        if (onClose) {
+          onClose();
+        } else {
+          navigate("/");
+        }
+      }
     } catch (error) {
-      console.log(error);
       setMessage("Error occurred");
     }
 

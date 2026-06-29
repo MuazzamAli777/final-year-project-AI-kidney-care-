@@ -27,13 +27,13 @@ const testimonials = [
 ];
     return (
         <>
-            <section class='py-20 bg-slate-100'>
-                <div class='max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 mx-auto '>
-                    <div class='text-center mb-10'>
-                        <h2 class='text-2xl font-bold  sm:text-4xl mb-5'>
+            <section className='py-20 bg-slate-100'>
+                <div className='max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 mx-auto '>
+                    <div className='text-center mb-10'>
+                        <h2 className='text-2xl font-bold  sm:text-4xl mb-5'>
                             What Healthcare Professionals Say
                         </h2>
-                        <p class='mb-15'>
+                        <p className='mb-15'>
                             Trusted by leading hospitals and medical professionals worldwide
                         </p>
                     </div>

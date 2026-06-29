@@ -215,16 +215,16 @@ function Report() {
             )}
             <section className="print:hidden" >
                 <Header />
-                <div class='max-w-3xl mx-auto px-4 sm:px-4 lg:px-8 mt-5'>
-                    <div class="space-y-6">
+                <div className='max-w-3xl mx-auto px-4 sm:px-4 lg:px-8 mt-5'>
+                    <div className="space-y-6">
 
-                        <div class="flex items-center justify-between print:hidden">
+                        <div className="flex items-center justify-between print:hidden">
 
 
                             {/* <!-- Back Button --> */}
-                            <button class="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md transition hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                            <button className="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md transition hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                                 onClick={() => navigate("/patients")}>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                                     <path d="m12 19-7-7 7-7"></path>
                                     <path d="M19 12H5"></path>
                                 </svg>
@@ -232,10 +232,10 @@ function Report() {
                             </button>
                             {/* 
                     <!-- Action Buttons --> */}
-                            <div class="flex gap-2">
-                                <button class="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                            <div className="flex gap-2">
+                                <button className="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                                     onClick={handlePrint}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                                         <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                         <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path>
                                         <rect x="6" y="14" width="12" height="8" rx="1"></rect>
@@ -243,10 +243,10 @@ function Report() {
                                     Print
                                 </button>
 
-                                {/* <button class="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                                {/* <button className="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
 
                                     onClick={handleDownload}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                         <polyline points="7 10 12 15 17 10"></polyline>
                                         <line x1="12" x2="12" y1="15" y2="3"></line>
@@ -261,37 +261,37 @@ function Report() {
 p-4 sm:p-6 lg:p-8 
 print:shadow-none print:border-0">
 
-                            <div class="mb-8">
+                            <div className="mb-8">
                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                                     <div>
-                                        <div class="flex items-center gap-3 mb-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity w-10 h-10 text-blue-600"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-activity w-10 h-10 text-blue-600"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
                                             </svg>
 
                                             <div>
-                                                <h1 class="text-3xl font-semibold text-gray-900">KidneyAI</h1>
+                                                <h1 className="text-3xl font-semibold text-gray-900">KidneyAI</h1>
 
-                                                <p class="text-sm text-gray-600">Medical Imaging Diagnostic Report</p>
+                                                <p className="text-sm text-gray-600">Medical Imaging Diagnostic Report</p>
 
                                             </div>
 
                                         </div>
 
                                     </div>
-                                    <div class=" px-4 text-right">
-                                        <p class="text-sm text-gray-600">Report Date</p>
-                                        <p class="font-medium text-gray-900">      {new Date(patient.$createdAt).toISOString().split("T")[0]}</p>
+                                    <div className=" px-4 text-right">
+                                        <p className="text-sm text-gray-600">Report Date</p>
+                                        <p className="font-medium text-gray-900">      {new Date(patient.$createdAt).toISOString().split("T")[0]}</p>
                                     </div>
                                 </div>
-                                <div data-orientation="horizontal" role="none" data-slot="separator-root" class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
+                                <div data-orientation="horizontal" role="none" data-slot="separator-root" className="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
                                 </div>
                             </div>
 
                             {/* {patient information} */}
-                            <div class="mb-8">
-                                <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                            <div className="mb-8">
+                                <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user w-5 h-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user w-5 h-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2">
                                     </path>
                                         <circle cx="12" cy="7" r="4"></circle></svg>
 
@@ -299,22 +299,22 @@ print:shadow-none print:border-0">
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-50 p-4 rounded-lg">
 
-                                    <div><p class="text-sm text-gray-600">Patient Name</p>
+                                    <div><p className="text-sm text-gray-600">Patient Name</p>
 
-                                        <p class="font-medium text-gray-900">{patient.name}</p>
+                                        <p className="font-medium text-gray-900">{patient.name}</p>
 
-                                    </div><div><p class="text-sm text-gray-600">Patient ID</p>
+                                    </div><div><p className="text-sm text-gray-600">Patient ID</p>
 
-                                        <p class="font-medium text-gray-900">{patient.$id}</p>
+                                        <p className="font-medium text-gray-900">{patient.$id}</p>
 
                                     </div>
                                     <div className='lg:text-right lg:pr-3'>
-                                        <p class="text-sm text-gray-600">Age</p>
-                                        <p class="font-medium text-gray-900">{patient.age}</p>
+                                        <p className="text-sm text-gray-600">Age</p>
+                                        <p className="font-medium text-gray-900">{patient.age}</p>
                                     </div>
                                     <div className='lg:text-center'>
-                                        <p class="text-sm text-gray-600">Gender</p>
-                                        <p class="font-medium text-gray-900 capitalize">{patient.gender}</p>
+                                        <p className="text-sm text-gray-600">Gender</p>
+                                        <p className="font-medium text-gray-900 capitalize">{patient.gender}</p>
 
                                     </div>
                                 </div>
@@ -322,11 +322,11 @@ print:shadow-none print:border-0">
                             </div>
                             {/* {image k lia } */}
 
-                            <div class="mb-8">
-                                <h2 class="text-xl font-semibold text-gray-900 mb-4">Medical Image</h2>
+                            <div className="mb-8">
+                                <h2 className="text-xl font-semibold text-gray-900 mb-4">Medical Image</h2>
                                 <img src={getimage(patient.featuredimage)} alt="Kidney scan" className="max-w-80 max-h-80 object-cover mx-auto rounded-lg border border-gray-200" />
 
-                                <p class="text-sm text-gray-600 text-center mt-3">Kidney imaging scan analyzed on {new Date(patient.$createdAt).toISOString().split("T")[0]}</p>
+                                <p className="text-sm text-gray-600 text-center mt-3">Kidney imaging scan analyzed on {new Date(patient.$createdAt).toISOString().split("T")[0]}</p>
                             </div>
                             {/* Heatmap Image */}
                             {heatmapUrl && (
@@ -350,9 +350,9 @@ print:shadow-none print:border-0">
 
                             {/* {ai powered analysis } */}
 
-                            <div class="mb-8">
+                            <div className="mb-8">
 
-                                <h2 class="text-xl font-semibold text-gray-900 mb-4">Diagnosis</h2>
+                                <h2 className="text-xl font-semibold text-gray-900 mb-4">Diagnosis</h2>
 
 
                                 <div
@@ -370,9 +370,9 @@ print:shadow-none print:border-0">
                                 >
 
 
-                                    <div class="flex items-center gap-3 mb-4">
+                                    <div className="flex items-center gap-3 mb-4">
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert w-8 h-8"><circle cx="12" cy="12" r="10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-alert w-8 h-8"><circle cx="12" cy="12" r="10">
 
                                         </circle>
                                             <line x1="12" x2="12" y1="8" y2="12">
@@ -401,7 +401,7 @@ print:shadow-none print:border-0">
 
                                             {patient.stonesize && (
                                                 <p className="text-sm mt-1">
-                                                    Stone Size: {patient.stone_size_mm / 100} mm
+                                                  Stone Size: {Number((patient.stone_size_mm / 100).toFixed(3))} mm
                                                 </p>
                                             )}
                                         </div>
@@ -442,7 +442,7 @@ print:shadow-none print:border-0">
                             {/* 
                     {last portion} */}
 
-                            <div class="border-t border-gray-200 pt-6 mt-8"><div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4"><p class="text-xs text-yellow-900 leading-relaxed"><span class="font-semibold">Medical Disclaimer:</span> This report is generated by an AI-powered diagnostic assistance system and should not be considered as a final diagnosis. The results are intended to support clinical decision-making and should be reviewed by a qualified healthcare professional. Always consult with a licensed physician for proper medical diagnosis and treatment planning.</p></div><div class="mt-4 text-center text-xs text-gray-500"><p>KidneyAI - Deep Learning Based Kidney Disease Detection System</p><p class="mt-1">Powered by Transfer Learning with CNN Architectures</p></div></div>
+                            <div className="border-t border-gray-200 pt-6 mt-8"><div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4"><p className="text-xs text-yellow-900 leading-relaxed"><span className="font-semibold">Medical Disclaimer:</span> This report is generated by an AI-powered diagnostic assistance system and should not be considered as a final diagnosis. The results are intended to support clinical decision-making and should be reviewed by a qualified healthcare professional. Always consult with a licensed physician for proper medical diagnosis and treatment planning.</p></div><div className="mt-4 text-center text-xs text-gray-500"><p>KidneyAI - Deep Learning Based Kidney Disease Detection System</p><p className="mt-1">Powered by Transfer Learning with CNN Architectures</p></div></div>
 
                         </div>
 

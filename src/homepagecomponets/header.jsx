@@ -30,7 +30,7 @@ function Header() {
       }else{
         dispatch(logout());
       }
-      dispatch(setLoading(false));
+      setLoading(false);
     };
     checkUser();
   }, []);
@@ -200,7 +200,7 @@ function Header() {
           </div>
           {bar1 &&
             (
-              <div class="md:hidden py-4 border-t border-gray-200">
+              <div className="md:hidden py-4 border-t border-gray-200">
                 <button
                   onClick={() => navigate("/homepage")}
                   className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 

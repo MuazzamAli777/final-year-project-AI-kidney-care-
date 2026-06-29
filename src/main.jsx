@@ -16,7 +16,7 @@ import Authlogin from "./pages/Authlogin.jsx";
 import App from "./App.jsx";
 import { store } from "./store/store";
 import ResetPassword from "./pages/ResetPassword.jsx";
-import NearHospital from "./nearhospital/Nearhospital.js";
+import NearHospital from "./nearhospital/Nearhospital";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
