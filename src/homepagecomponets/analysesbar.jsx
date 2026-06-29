@@ -13,14 +13,14 @@ function Analysesbar() {
 
                         <div class='text-center'>
                             <h1 class='text-blue-700 text-3xl font-bold'>10,000+</h1>
-                            <p>analysis perforn </p>
+                            <p>analysis perform </p>
                         </div>
                         <div class='text-center'>
                             <h1 class='text-blue-700 text-3xl font-bold'>97.7 %</h1>
                             <p>Accuracy Rate </p>
                         </div>
                         <div class='text-center'>
-                            <h1 class='text-blue-700 text-3xl font-bold '>500+</h1>
+                            <h1 class='text-blue-700 text-3xl font-bold '>20+</h1>
                             <p>Healthcare Partner </p>
                         </div>
                         <div class='text-center'>

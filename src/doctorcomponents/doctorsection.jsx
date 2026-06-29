@@ -7,7 +7,7 @@ const doctorsData = [
     hospital: "City Hospital Lahore",
     specialization: "Nephrology",
     timing: "Mon–Sat, 5 PM – 9 PM",
-    phone: "923001234567",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop",
   },
   {
@@ -16,7 +16,7 @@ const doctorsData = [
     hospital: "Shaukat Khanum Hospital",
     specialization: "Nephrology",
     timing: "Mon–Fri, 9 AM – 1 PM",
-    phone: "923009876543",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop",
   },
   {
@@ -25,7 +25,7 @@ const doctorsData = [
     hospital: "Agha Khan Hospital",
     specialization: "Nephrology",
     timing: "Tue–Sun, 3 PM – 7 PM",
-    phone: "923115556677",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop",
   },
   {
@@ -34,7 +34,7 @@ const doctorsData = [
     hospital: "Jinnah Hospital",
     specialization: "Nephrology",
     timing: "Mon–Wed, 10 AM – 2 PM",
-    phone: "923221234567",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop",
   },
   {
@@ -43,7 +43,7 @@ const doctorsData = [
     hospital: "Services Hospital",
     specialization: "Nephrology",
     timing: "Mon–Sat, 6 PM – 10 PM",
-    phone: "923334445566",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=400&fit=crop",
   },
   {
@@ -52,7 +52,7 @@ const doctorsData = [
     hospital: "Mayo Hospital",
     specialization: "Urology",
     timing: "Mon–Fri, 8 AM – 12 PM",
-    phone: "923447778899",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&h=400&fit=crop",
   },
   {
@@ -61,7 +61,7 @@ const doctorsData = [
     hospital: "Hameed Latif Hospital",
     specialization: "Urology",
     timing: "Tue–Sat, 4 PM – 8 PM",
-    phone: "923556667788",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=400&h=400&fit=crop",
   },
   {
@@ -70,7 +70,7 @@ const doctorsData = [
     hospital: "National Hospital",
     specialization: "Urology",
     timing: "Mon–Thu, 2 PM – 6 PM",
-    phone: "923667778899",
+    phone: "923420315743",
     image: "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=400&h=400&fit=crop",
   },
 ];

@@ -10,6 +10,8 @@ function Contact() {
         phone: "",
         message: "",
     });
+    const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState("");
 
     const [error, setError] = useState("");
 
@@ -20,42 +22,58 @@ function Contact() {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // validation
-        if (!form.name || !form.email || !form.message) {
-            return setError("Please fill all required fields");
-        }
-
-        if (!validateEmail(form.email)) {
-            return setError("Invalid email format");
-        }
-
-        setError("");
-
-        emailjs
-            .send(
-                "YOUR_SERVICE_ID",
-                "YOUR_TEMPLATE_ID",
-                {
-                    name: form.name,
-                    email: form.email,
-                    phone: form.phone,
-                    message: form.message,
-                    to_email: "mozabhali521@gmail.com",
-                },
-                "YOUR_PUBLIC_KEY"
-            )
-            .then(() => {
-                alert("Message sent successfully!");
-                setForm({ name: "", email: "", phone: "", message: "" });
-            })
-            .catch(() => {
-                alert("Failed to send message");
-            });
+    if (!form.name || !form.email || !form.message) {
+        return setError("Please fill all required fields");
     }
+
+    if (!validateEmail(form.email)) {
+        return setError("Invalid email format");
+    }
+
+    setError("");
+    setSuccess("");
+    setLoading(true);
+
+    try {
+        await emailjs.send(
+            "service_q1x5c26",
+            "template_9u2ei19",
+            {
+                from_name: form.name,
+                from_email: form.email,
+                from_Number: form.phone,
+                message: form.message,
+                to_email: "mozabhali521@gmail.com",
+            },
+            "iuZmKzCg80kxjXnOV"
+        );
+
+      setSuccess("✅ Message sent successfully!");
+
+setTimeout(() => {
+    setSuccess("");
+}, 3000); // 5 seconds
+
+        setForm({
+            name: "",
+            email: "",
+            phone: "",
+            message: "",
+        });
+
+    } catch (err) {
+      setError("❌ Failed to send message. Please try again.");
+
+setTimeout(() => {
+    setError("");
+}, 3000); // 5 seconds
+    } finally {
+        setLoading(false);
+    }
+};
     return (
         <>
             <section id="contact" class="py-20 bg-white">
@@ -162,12 +180,56 @@ Narowal, Punjab 51600, Pakistan</div>
 
       {/* Button */}
       <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition duration-200"
-      >
-        Send Message
-      </button>
+    type="submit"
+    disabled={loading}
+    className={`w-full py-3 rounded-xl font-medium transition duration-200
+        ${
+            loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
+        }`}
+>
+    {loading ? (
+        <div className="flex items-center justify-center gap-2">
+            <svg
+                className="animate-spin h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+            >
+                <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                ></circle>
+                <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+            </svg>
+
+            Sending...
+        </div>
+    ) : (
+        "Send Message"
+    )}
+</button>
     </form>
+    {error && (
+    <p className="text-red-500 text-sm bg-red-50 p-3 rounded-lg">
+        {error}
+    </p>
+)}
+
+{success && (
+    <p className="text-green-600 text-sm bg-green-50 p-3 rounded-lg">
+        {success}
+    </p>
+)}
 
   </div>
 </div>

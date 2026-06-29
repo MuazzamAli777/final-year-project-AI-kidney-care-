@@ -27,6 +27,8 @@ function Header() {
       });
       if (user) {
         dispatch(login(formatUser(user)));
+      }else{
+        dispatch(logout());
       }
       dispatch(setLoading(false));
     };
@@ -98,7 +100,7 @@ function Header() {
                   </button>
 
                   <button
-                    onClick={() => navigate("/newanalysis")}
+                    onClick={() => navigate("/doctors")}
                     className={`text-sm font-medium p-2 mx-3 transition-all duration-200
     hover:bg-blue-100 hover:text-blue-600 hover:rounded-full
     ${location.pathname === "/newanalysis"
@@ -209,31 +211,58 @@ function Header() {
                 </button>
 
                 <button
-                  onClick={() => navigate("/dashboard")}
-                  className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
-               transition-all duration-200
-               hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
-                >
-                  Dashboard
-                </button>
-
-                <button
                   onClick={() => navigate("/newanalysis")}
                   className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
                transition-all duration-200
                hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
                 >
-                  New Analysis
+                   New Analysis
                 </button>
 
                 <button
+                  onClick={() => navigate("/Doctors")}
+                  className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
+               transition-all duration-200
+               hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
+                >
+                  Doctors
+                </button>
+
+                
+                 <button
+                  onClick={() => navigate("/nearhospitals")}
+                  className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
+               transition-all duration-200
+               hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
+                >
+                  Hospitals
+                </button>
+                 <button
+                  onClick={() => navigate("/chatbot")}
+                  className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
+               transition-all duration-200
+               hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
+                >
+                  chatbot
+                </button>
+                {isAuthenticated && (<button
                   onClick={() => navigate("/patients")}
                   className="block w-full text-left py-2 px-4 text-sm font-medium text-gray-600 
                transition-all duration-200
                hover:bg-blue-50 hover:text-blue-600 hover:rounded-lg"
                 >
                   Patient Records
-                </button>
+                </button>)}
+                 {isAuthenticated && (
+                    <button onClick={() => setShowLogoutModal(true)} className="text-red-600 ml-4">
+                      Logout
+                    </button>
+                  )}
+                  {!isAuthenticated && (
+                    <button onClick={() => navigate("/AuthPage")} className="text-red-600 ml-4 ">
+                      login/signup
+                    </button>
+                  )}
               </div>
             )
           }

@@ -279,7 +279,7 @@ function AuthPage() {
                                         type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        autoComplete="new-password"
+                                       
                                         placeholder="••••••••"
                                         required
                                         className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"

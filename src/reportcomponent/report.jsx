@@ -145,20 +145,20 @@ function Report() {
             ];
         }
         if (patient.result === "Reject") {
-    return (
-        <div className="flex items-center justify-center h-screen text-center">
-            <div className="bg-red-100 border border-red-300 text-red-700 px-6 py-4 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-2">
-                    Invalid Image Uploaded
-                </h2>
-                <p>
-                    The uploaded file is not a valid kidney CT scan or ultrasound image.
-                    Please upload a relevant medical image.
-                </p>
-            </div>
-        </div>
-    );
-}
+            return (
+                <div className="flex items-center justify-center h-screen text-center">
+                    <div className="bg-red-100 border border-red-300 text-red-700 px-6 py-4 rounded-lg shadow-md">
+                        <h2 className="text-xl font-semibold mb-2">
+                            Invalid Image Uploaded
+                        </h2>
+                        <p>
+                            The uploaded file is not a valid kidney CT scan or ultrasound image.
+                            Please upload a relevant medical image.
+                        </p>
+                    </div>
+                </div>
+            );
+        }
 
         return []; // 🔴 important
     };
@@ -243,7 +243,7 @@ function Report() {
                                     Print
                                 </button>
 
-                                <button class="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                                {/* <button class="flex items-center gap-2 px-4 py-2 h-9 text-sm font-medium rounded-md border bg-background text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring"
 
                                     onClick={handleDownload}>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -252,7 +252,7 @@ function Report() {
                                         <line x1="12" x2="12" y1="15" y2="3"></line>
                                     </svg>
                                     Download
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 

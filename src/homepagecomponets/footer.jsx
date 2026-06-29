@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../homepagecomponets/logo icon .jpeg";
 function Footer() {
   const [count, setCount] = useState(0);
 
@@ -20,21 +20,10 @@ const { isAuthenticated } = useSelector(
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-activity w-8 h-8 text-blue-400"
-                >
-                  <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
-                </svg>
-                <span className="text-xl font-bold">KidneyAI</span>
+               <div>
+                <img src={logo} alt="logo" className="object-fill w-10 h-10 rounded-2xl" />
+               </div>
+                <span className="text-xl font-bold">AI-Kidney Care</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Advanced AI-powered kidney disease detection system for early
@@ -72,7 +61,7 @@ const { isAuthenticated } = useSelector(
                 <li>
                   <Link
                     className="text-gray-400 hover:text-white transition-colors"
-                    to="/homepage#team"
+                    to="/Doctors"
                   >
                     Our Team
                   </Link>

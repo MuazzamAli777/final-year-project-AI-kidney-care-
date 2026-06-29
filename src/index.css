@@ -3,12 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @media print {
+@media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-} */
+}
 /* Hide scrollbar for Chrome, Safari */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
