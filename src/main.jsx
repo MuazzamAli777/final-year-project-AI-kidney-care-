@@ -12,7 +12,7 @@ import Report from "./reportcomponent/report";
 import Auth from "./pages/auth";
 import { Provider } from 'react-redux';
 import ProtectedRoute from "./protectedroutes/Protectedroute.jsx";
-import Authlogin from "./pages/authlogin.jsx";
+import Authlogin from "./pages/Authlogin.jsx";
 import App from "./App.jsx";
 import { store } from "./store/store";
 import ResetPassword from "./pages/ResetPassword.jsx";
