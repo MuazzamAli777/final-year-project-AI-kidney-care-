@@ -100,7 +100,7 @@ function Header() {
                   </button>
 
                   <button
-                    onClick={() => navigate("/doctors")}
+                    onClick={() => navigate("/newanalysis")}
                     className={`text-sm font-medium p-2 mx-3 transition-all duration-200
     hover:bg-blue-100 hover:text-blue-600 hover:rounded-full
     ${location.pathname === "/newanalysis"
