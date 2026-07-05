@@ -184,18 +184,18 @@ async loginWithGoogle() {
   try {
     this.account.createOAuth2Session(
       "google",
-      "http://localhost:5173/",   // success redirect
-      "http://localhost:5173/AuthPage" // failure redirect
+      "https://final-year-project-ai-kidney-care-j.vercel.app/",
+      "https://final-year-project-ai-kidney-care-j.vercel.app/AuthPage"
     );
   } catch (error) {
-    console.log("Google login error:", error);
+    console.log(error);
   }
 }
 async forgotPassword(email) {
   try {
     return await this.account.createRecovery(
       email,
-      "http://localhost:5173/reset-password"
+     "https://final-year-project-ai-kidney-care-j.vercel.app/reset-password"
     );
   } catch (error) {
     console.log("Forgot password error:", error);
