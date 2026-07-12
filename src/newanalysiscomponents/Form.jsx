@@ -101,6 +101,37 @@ const data = await response.json();
 setresult(data.result);
 setconfidence(data.confidence);
 
+const confidenceValue = data.confidence * 100;
+let stonesize = data.stone_size;
+let stone_size_mm = data.stone_size_mm;
+let finalResult = data.result;
+
+if (confidenceValue < 70) {
+  finalResult = "Other";
+  stonesize = null;
+}
+
+if (confidenceValue < 70 || finalResult === "Other" || finalResult === "Reject") {
+  setLoading(false);
+
+  setPopupMessage("invalid picture. Please try again with a kidney image.");
+  setShowPopup(true);
+
+  setImageFile(null);
+  setImagePreview(null);
+  setname("");
+  setage("");
+  setgender("");
+  setcontactno("");
+  setemail("");
+  setsymptoms("");
+  setmedicalhistory("");
+  setheatmapimage("");
+  setstonesize("");
+
+  return;
+}
+
 // convert base64 to file
 const heatmapBase64 = "data:image/png;base64," + data.gradcam_image_base64;
 const heatmapFile = base64ToFile(heatmapBase64, "gradcam.png");
@@ -110,6 +141,7 @@ const uploadedFile = await services.uploadImage(file12);
 
 if (!uploadedFile) {
   alert("Image upload failed");
+  setLoading(false);
   return;
 }
 
@@ -118,42 +150,7 @@ const heatmapimage1 = await services.uploadImage(heatmapFile);
 
 if (!heatmapimage1) {
   alert("Heatmap upload failed");
-  return;
-}
-    const confidenceValue = data.confidence * 100;
-let stonesize=data.stone_size
-
-let stone_size_mm=data.stone_size_mm
-
-let finalResult = data.result;
-
-if (confidenceValue < 70) {
-  finalResult = "Other";
-  stonesize=null
-}
-
-
-if (confidenceValue < 70 || finalResult === "Other") {
   setLoading(false);
-
-  setPopupMessage("invalid picture. Please try again with a kidney image.");
-  setShowPopup(true);
-
-  setImageFile(null);
-  setImagePreview(null);
-    setImageFile(null);
-      setImagePreview(null);
-      setname("");
-      setage("");
-      setgender("");
-      setcontactno("");
-      setemail("");
-      setsymptoms("");
-      setmedicalhistory("");
-      setheatmapimage("");
-      setstonesize("")
-
-
   return;
 }
 

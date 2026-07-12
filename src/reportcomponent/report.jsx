@@ -80,6 +80,35 @@ function Report() {
     if (loading) return <p>Loading report...</p>;
     if (!patient) return <p>Patient not found!</p>;
 
+    if (patient.result === "Reject") {
+        return (
+            <div>
+                <Header />
+                <div className="flex items-center justify-center min-h-[80vh] text-center px-4">
+                    <div className="bg-red-100 border border-red-300 text-red-700 px-8 py-6 rounded-lg shadow-md max-w-lg">
+                        <h2 className="text-2xl font-bold mb-2">
+                            Invalid Image Uploaded
+                        </h2>
+                        <p className="mb-6">
+                            The uploaded file is not a valid kidney CT scan or ultrasound image.
+                            Please upload a relevant medical image.
+                        </p>
+                        <button
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-red-600 hover:bg-red-700 text-white transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                            onClick={() => navigate("/patients")}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                <path d="m12 19-7-7 7-7"></path>
+                                <path d="M19 12H5"></path>
+                            </svg>
+                            Back to Records
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     const getDescription = () => {
 
         if (patient.result === "Stone") {
@@ -145,19 +174,10 @@ function Report() {
             ];
         }
         if (patient.result === "Reject") {
-            return (
-                <div className="flex items-center justify-center h-screen text-center">
-                    <div className="bg-red-100 border border-red-300 text-red-700 px-6 py-4 rounded-lg shadow-md">
-                        <h2 className="text-xl font-semibold mb-2">
-                            Invalid Image Uploaded
-                        </h2>
-                        <p>
-                            The uploaded file is not a valid kidney CT scan or ultrasound image.
-                            Please upload a relevant medical image.
-                        </p>
-                    </div>
-                </div>
-            );
+            return [
+                "The uploaded file is not a valid kidney CT scan or ultrasound image.",
+                "Please upload a relevant medical image."
+            ];
         }
 
         return []; // 🔴 important

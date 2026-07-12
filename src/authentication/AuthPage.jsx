@@ -79,7 +79,7 @@ function AuthPage() {
                     setPassword("");
 
                     setTimeout(() => {
-                        navigate("/https://your-project.vercel.app");
+                        navigate("/");
                     }, 1000);
                 }
 

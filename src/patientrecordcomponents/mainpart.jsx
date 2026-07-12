@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function Patient_record() {
 
   const [patients, setPatients] = useState([]);
+  const [deleteTargetId, setDeleteTargetId] = useState(null);
   const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,18 +80,19 @@ const [totalPages, setTotalPages] = useState(1);
 
 
 
-  const deletepost = async (id) => {
+  const deletepost = (id) => {
+    setDeleteTargetId(id);
+  };
 
-    const confirmDelete = window.confirm("Are you sure you want to delete?");
-
-    if (!confirmDelete) return;
+  const confirmDeleteHandler = async () => {
+    if (!deleteTargetId) return;
+    const id = deleteTargetId;
+    setDeleteTargetId(null);
 
     const ans = await services.deletePost(id);
-
     if (ans) {
       setPatients(patients.filter((p) => p.$id !== id));
     }
-
   };
 
   const openReport = (patientid_li) => {
@@ -107,6 +109,41 @@ const [totalPages, setTotalPages] = useState(1);
 
   return (
     <>
+      {deleteTargetId && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full border border-gray-100 mx-4 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center gap-3 text-red-600 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                <line x1="10" x2="10" y1="11" y2="17"></line>
+                <line x1="14" x2="14" y1="11" y2="17"></line>
+              </svg>
+              <h3 className="text-lg font-bold text-gray-900">Confirm Deletion</h3>
+            </div>
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+              Are you sure you want to delete this patient record? This action cannot be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setDeleteTargetId(null)}
+                className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmDeleteHandler}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium shadow-sm transition-colors"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <section className='flex-1'>
         <div className="min-h-screen bg-gray-50 py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -19,6 +19,7 @@ API_KEY = "AIzaSyDjess5acDyfrHGmQPW83hnbbXVA811KYo"
 
 # ✅ Request model
 class ChatRequest(BaseModel):
+
     message: str
 
 # ✅ Kidney related keywords filter
@@ -30,7 +31,9 @@ keywords = [
 def is_kidney_related(text: str) -> bool:
     text = text.lower()
     return any(k in text for k in keywords)
+
 @app.post("/chat")
+
 def chat(req: ChatRequest):
 
     if not is_kidney_related(req.message):

@@ -17,6 +17,8 @@ export default function Chatbot() {
     "kidney", "kideny", "gurda", "pathri", "stone",
     "dialysis", "renal", "urine", "cyst", "tumor"
   ];
+  
+
 
   const isKidneyRelated = (msg) => {
     return keywords.some(k => msg.toLowerCase().includes(k));
@@ -33,11 +35,11 @@ export default function Chatbot() {
       createNewChat();
     }
   }, []);
-const generateTitle = (text) => {
-  return text.length > 25
-    ? text.substring(0, 25) + "..."
-    : text;
-};
+  const generateTitle = (text) => {
+    return text.length > 25
+      ? text.substring(0, 25) + "..."
+      : text;
+  };
   // ✅ save chats
   useEffect(() => {
     if (chats.length > 0) {
@@ -122,20 +124,20 @@ const generateTitle = (text) => {
 
     // ✅ add user msg
     setChats(prev =>
-  prev.map(chat => {
-    if (chat.id === currentChatId) {
-      const isFirstMessage = chat.messages.length === 1; 
-      // because 1 bot welcome message already exists
+      prev.map(chat => {
+        if (chat.id === currentChatId) {
+          const isFirstMessage = chat.messages.length === 1;
+          // because 1 bot welcome message already exists
 
-      return {
-        ...chat,
-        title: isFirstMessage ? generateTitle(userText) : chat.title,
-        messages: [...chat.messages, userMessage],
-      };
-    }
-    return chat;
-  })
-);
+          return {
+            ...chat,
+            title: isFirstMessage ? generateTitle(userText) : chat.title,
+            messages: [...chat.messages, userMessage],
+          };
+        }
+        return chat;
+      })
+    );
 
     setInputValue("");
 
@@ -257,45 +259,18 @@ User: ${userText}`,
     <>
       <Header />
       <div className=" h-screen size-full flex bg-gray-100 fixed top-13">
-<div className="flex h-screen">
-        <div
-          className={`${sidebarOpen ? "w-64" : "w-0"
-            } transition-all duration-300 border-r bg-white border-gray-200 flex flex-col overflow-hidden`}
-        >
-          <div className="p-1.5 border-b bg-gradient-to-br from-blue-600 to-purple-600 ">
-            <button
-              onClick={createNewChat}
-              className="w-full flex items-center justify-center gap-2 rounded-lg  bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-3 text-sm text-gray-100 hover:bg-blue-50 transition"
-            >
-              <svg
-                className="size-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-              New Chat
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-2 space-y-1">
-            {chats.map((chat) => (
-              <div
-                key={chat.id}
-                className={`group flex items-center gap-2 rounded-lg px-3 py-2.5 cursor-pointer transition ${currentChatId === chat.id
-                    ? " bg-blue-100"
-                    : " hover:bg-blue-100"
-                  }`}
-                onClick={() => setCurrentChatId(chat.id)}
+        <div className="flex h-screen">
+          <div
+            className={`${sidebarOpen ? "w-64" : "w-0"
+              } transition-all duration-300 border-r bg-white border-gray-200 flex flex-col overflow-hidden`}
+          >
+            <div className="p-1.5 border-b bg-gradient-to-br from-blue-600 to-purple-600 ">
+              <button
+                onClick={createNewChat}
+                className="w-full flex items-center justify-center gap-2 rounded-lg  bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-3 text-sm text-gray-100 hover:bg-blue-50 transition"
               >
                 <svg
-                  className="size-4 shrink-0 text-gray-700"
+                  className="size-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -304,21 +279,25 @@ User: ${userText}`,
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    d="M12 4v16m8-8H4"
                   />
                 </svg>
-                <span className="flex-1 truncate text-sm text-gray-700">
-                  {chat.title}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteChat(chat.id);
-                  }}
-                  className="opacity-0 group-hover:opacity-100 transition"
+                New Chat
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-2 space-y-1">
+              {chats.map((chat) => (
+                <div
+                  key={chat.id}
+                  className={`group flex items-center gap-2 rounded-lg px-3 py-2.5 cursor-pointer transition ${currentChatId === chat.id
+                    ? " bg-blue-100"
+                    : " hover:bg-blue-100"
+                    }`}
+                  onClick={() => setCurrentChatId(chat.id)}
                 >
                   <svg
-                    className="size-4 text-neutral-400 hover:text-red-600"
+                    className="size-4 shrink-0 text-gray-700"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -327,14 +306,37 @@ User: ${userText}`,
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                     />
                   </svg>
-                </button>
-              </div>
-            ))}
+                  <span className="flex-1 truncate text-sm text-gray-700">
+                    {chat.title}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteChat(chat.id);
+                    }}
+                    className="opacity-0 group-hover:opacity-100 transition"
+                  >
+                    <svg
+                      className="size-4 text-neutral-400 hover:text-red-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
         </div>
 
         <div className="flex-1 flex flex-col">
@@ -392,8 +394,8 @@ User: ${userText}`,
                 >
                   <div
                     className={`flex size-8 shrink-0 items-center justify-center rounded-full ${message.sender === "bot"
-                        ? "bg-gradient-to-br from-blue-600 to-purple-600"
-                        : "bg-gradient-to-br from-green-600 to-teal-600"
+                      ? "bg-gradient-to-br from-blue-600 to-purple-600"
+                      : "bg-gradient-to-br from-green-600 to-teal-600"
                       }`}
                   >
                     {message.sender === "bot" ? (
@@ -428,8 +430,8 @@ User: ${userText}`,
                   </div>
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-3 mb-7 sm:max-w-[75%]  sm:mb-7 ${message.sender === "user"
-                        ? "bg-white text-gray-800 shadow"
-                        : " bg-blue-300 text-gray-1000 shadow"
+                      ? "bg-white text-gray-800 shadow"
+                      : " bg-blue-300 text-gray-1000 shadow"
                       }`}
                   >
                     <p className="text-[15px] m leading-relaxed whitespace-pre-wrap">
@@ -446,16 +448,16 @@ User: ${userText}`,
               ))}
 
               {loading && (
-              <div className="">
-                <p className="text-sm text-gray-500 mb-16 animate-pulse">
-                  Typing...
-                </p>
+                <div className="">
+                  <p className="text-sm text-gray-500 mb-16 animate-pulse">
+                    Typing...
+                  </p>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
           </div>
-{/* //border-t */}
+          {/* //border-t */}
           <div className=" bg-transparent px-4 py-4 sticky bottom-0">
             <div className="mx-auto max-w-3xl">
               <div className="flex gap-2 sm:gap-3">

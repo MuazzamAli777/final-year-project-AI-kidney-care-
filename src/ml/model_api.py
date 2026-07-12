@@ -264,6 +264,7 @@ def cam_to_base64(image):
 # PREDICT API
 # -----------------------------
 @app.post("/predict")
+
 async def predict(file: UploadFile = File(...)):
 
     image_bytes = await file.read()
